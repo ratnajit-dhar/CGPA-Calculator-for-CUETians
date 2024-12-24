@@ -30,7 +30,7 @@ def calculate_cgpa(data):
         'D': 2.00,
         'F': 0.00
     }
-
+    df['Grade'] = df['Result']
     df['Result'] = df['Result'].map(map_result)
 
     resultDataframe = pd.DataFrame(columns=["Level", "Term", "TotalCredit", "GPA"])
@@ -60,4 +60,5 @@ def calculate_cgpa(data):
     df['Level'] = df['LevelNo']
     df['Term'] = df['TermNo']
     df.drop(columns=["LevelNo", "TermNo"], inplace=True)
+    df.drop(columns=['Result'], inplace=True)
     return df, resultDataframe, cgpa  # Return df along with the summary dataframe and CGPA
