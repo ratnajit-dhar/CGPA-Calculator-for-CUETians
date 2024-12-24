@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CGPA Calculator for CUET Students</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            text-align: center;
+        }
+        textarea {
+            width: 80%;
+            height: 200px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #007bff;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+            display: inline-block;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 22px;
+        }
+        .video-container {
+            margin-top: 30px;
+        }
+        video {
+            max-width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        CGPA Calculator for CUET Students
+    </div>
+    <form method="POST" action="/submit">
+        <textarea name="user_input" placeholder="Type something here..."></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+    <h1> See the demo video to know how to input</h1>
+    <!-- Video Section -->
+    <div class="video-container">
+        <video controls>
+            <source src="static/sample video.mp4" type="video/mp4">
+            <!-- Your browser does not support the video tag. -->
+        </video>
+    </div>
+
+    <div class="footer">
+        <p>Developed by <a href="https://www.linkedin.com/in/ratnajitdhar" target="_blank">Ratnajit Dhar</a></p>
+    </div>
+</body>
+</html>
