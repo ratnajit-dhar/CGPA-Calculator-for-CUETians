@@ -255,35 +255,48 @@
 
         <script>
             document.getElementById('filter-button').addEventListener('click', function () {
-                const level = document.getElementById('level').value;
-                const term = document.getElementById('term').value;
-                // Get the table rows
-                const table = document.querySelector('#table-container table');
-                const rows = table.querySelectorAll('tbody tr');
-        
-                // Loop through rows and hide/show based on the filter
-                rows.forEach(row => {
-                    const rowLevel = row.querySelector('td:nth-child(2)').textContent;
-                    const rowTerm = row.querySelector('td:nth-child(3)').textContent;
-                    if ((level && rowLevel !== level) || (term && rowTerm !== term)) {
-                        row.style.display = 'none';
-                    } else {
-                        row.style.display = '';
-                    }
-                });
-            });
+            const level = document.getElementById('level').value;
+            const term = document.getElementById('term').value;
 
-            document.getElementById('reset-button').addEventListener('click', function () {
-                const level = document.getElementById('level');
-                const term = document.getElementById('term');
-                level.selectedIndex = 0;
-                term.selectedIndex = 0;
+            // Check if both level and term are selected
+            if (!level || !term) {
+                return; // Do nothing and exit the function if level or term is not selected
+            }
 
-                // Show all table rows
-                const table = document.querySelector('#table-container table');
-                const rows = table.querySelectorAll('tbody tr');
-                rows.forEach(row => row.style.display = '');
+            // Get the table rows
+            const table = document.querySelector('#table-container table');
+            const rows = table.querySelectorAll('tbody tr');
+
+            // Loop through rows and hide/show based on the filter
+            rows.forEach(row => {
+                const levelCell = row.cells[2]?.innerText.trim(); // Assuming LevelNo is in the 3rd column
+                const termCell = row.cells[3]?.innerText.trim();  // Assuming TermNo is in the 4th column
+
+                if (
+                    (level === '' || levelCell === level) &&
+                    (term === '' || termCell === term)
+                ) {
+                    row.style.display = ''; // Show row
+                } else {
+                    row.style.display = 'none'; // Hide row
+                }
             });
+        });
+
+        document.getElementById('reset-button').addEventListener('click', function () {
+            // Reset the select elements to their default values
+            document.getElementById('level').value = "";
+            document.getElementById('term').value = "";
+            
+            // Get the table rows
+            const table = document.querySelector('#table-container table');
+            const rows = table.querySelectorAll('tbody tr');
+
+            // Show all rows again when resetting
+            rows.forEach(row => {
+                row.style.display = ''; // Show row
+            });
+        });
         </script>
     </div>
 </body>
