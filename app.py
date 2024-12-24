@@ -7,8 +7,8 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/submit', methods=['POST'])
-def submit():
+@app.route('/result', methods=['POST'])
+def result():
     # Get the input data from the form
     user_input = request.form.get('user_input')
 

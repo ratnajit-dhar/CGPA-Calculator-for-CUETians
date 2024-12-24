@@ -7,8 +7,19 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 50px;
+            margin: 20px;
             text-align: center;
+        }
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #007bff;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+            display: inline-block;
         }
         textarea {
             width: 80%;
@@ -18,6 +29,7 @@
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            box-sizing: border-box;
         }
         button {
             font-size: 18px;
@@ -31,28 +43,55 @@
         button:hover {
             background-color: #218838;
         }
-        .title {
-            font-size: 36px;
-            font-weight: bold;
-            color: #007bff;
-            background-color: #f1f1f1;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            margin-bottom: 40px;
-            display: inline-block;
-        }
         .footer {
             margin-top: 30px;
             font-size: 22px;
         }
         .video-container {
             margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        video {
-            max-width: 80%;
+        iframe {
+            max-width: 100%;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 28px;
+                padding: 15px;
+            }
+            textarea {
+                width: 90%;
+                font-size: 14px;
+            }
+            button {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 24px;
+                padding: 10px;
+            }
+            textarea {
+                width: 95%;
+                font-size: 12px;
+            }
+            button {
+                font-size: 14px;
+                padding: 8px 14px;
+            }
+            iframe {
+                width: 100%;
+                height: auto;
+            }
         }
     </style>
 </head>
@@ -60,21 +99,21 @@
     <div class="title">
         CGPA Calculator for CUET Students
     </div>
-    <form method="POST" action="/submit">
+    <form method="POST" action="/result">
         <textarea name="user_input" placeholder="Type something here..."></textarea><br>
         <button type="submit">Submit</button>
     </form>
-    <h1> See the demo video to know how to input</h1>
+    <h1>Watch the demo video to learn how to input</h1>
     <!-- Video Section -->
     <div class="video-container">
-        <iframe src="https://player.vimeo.com/video/1042020258?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
+        <iframe src="https://player.vimeo.com/video/1042025299?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" 
             width="929" height="441" frameborder="0" 
             allow="autoplay; fullscreen; picture-in-picture; clipboard-write" 
             title="sample video"></iframe>
     </div>
 
     <div class="footer">
-        <p>Developed by <a href="https://www.linkedin.com/in/ratnajitdhar" target="_blank">Ratnajit Dhar</a></p>
+        <p>Developed by <a href="https://www.linkedin.com/in/ratnajit-dhar" target="_blank">Ratnajit Dhar</a></p>
     </div>
 </body>
 </html>
