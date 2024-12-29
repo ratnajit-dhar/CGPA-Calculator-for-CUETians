@@ -7,10 +7,32 @@ def calculate_cgpa(data):
     end_idx = res.find("Showing")
 
     result = res[start_idx:end_idx].strip()
+    import re
+
     formatted_data = []
     for line in result.strip().split("\n"):
-        formatted_data.append("/".join(line.split()))
+        # Search for the first occurrence of three consecutive digits
+        match = re.search(r"\d{3}", line)
+        if match:
+            # Extract the part up to and including the digits
+            start_part = line[:match.end()]
+            # Extract the remaining part and normalize it
+            rest_part = "/".join(line[match.end():].split())
+            # Combine the two parts
+            line = start_part + "/" + rest_part if rest_part else start_part
+        else:
+            # Normalize the entire line if no digits are found
+            line = "/".join(line.split())
+        
+        # Append the formatted line to the result
+        formatted_data.append(line)
+
+    # Combine all formatted lines
     resultTarget = "\n".join(formatted_data)
+
+    # Display the result
+    print(resultTarget)
+
 
     columns = ["Course Code", "Course Credit", "Level", "LevelNo", "Hyphen",
                "Term", "TermNo", "Sessional", "Result", "Course Type"]
