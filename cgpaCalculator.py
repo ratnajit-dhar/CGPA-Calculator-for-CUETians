@@ -11,26 +11,25 @@ def calculate_cgpa(data):
 
     formatted_data = []
     for line in result.strip().split("\n"):
-        # Search for the first occurrence of three consecutive digits
+        
         match = re.search(r"\d{3}", line)
         if match:
-            # Extract the part up to and including the digits
+            
             start_part = line[:match.end()]
-            # Extract the remaining part and normalize it
+            
             rest_part = "/".join(line[match.end():].split())
-            # Combine the two parts
+            
             line = start_part + "/" + rest_part if rest_part else start_part
         else:
-            # Normalize the entire line if no digits are found
+            
             line = "/".join(line.split())
         
-        # Append the formatted line to the result
+       
         formatted_data.append(line)
 
-    # Combine all formatted lines
+   
     resultTarget = "\n".join(formatted_data)
 
-    # Display the result
     print(resultTarget)
 
 
@@ -59,8 +58,8 @@ def calculate_cgpa(data):
     cgpagradeSum = 0
     cgpacred = 0
 
-    for i in range(1, 5):
-        for j in range(1, 5):
+    for i in range(1, 6):
+        for j in range(1, 6):
             currentdf = df[(df['LevelNo'] == i) & (df['TermNo'] == j)]
             if currentdf.empty:
                 continue
@@ -78,9 +77,9 @@ def calculate_cgpa(data):
 
     cgpa = round(cgpagradeSum / cgpacred, 2)
 
-    # df.drop(columns=["Level", "Term"], inplace=True)
+    
     df['Level'] = df['LevelNo']
     df['Term'] = df['TermNo']
     df.drop(columns=["LevelNo", "TermNo"], inplace=True)
     df.drop(columns=['Result'], inplace=True)
-    return df, resultDataframe, cgpa  # Return df along with the summary dataframe and CGPA
+    return df, resultDataframe, cgpa  
