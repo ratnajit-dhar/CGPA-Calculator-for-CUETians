@@ -261,11 +261,68 @@
                 gap: 10px;
             }
         }
+        .TargetResult {
+            width: 80%;
+            max-width: 600px;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .TargetResult label {
+            font-size: 16px;
+            font-weight: bold;
+            color: #007bff;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .TargetResult input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .TargetResult button {
+            font-size: 16px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .TargetResult button:hover {
+            background-color: #0056b3;
+        }
+
+        .TargetResult #needed-cgpa-result {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+            margin-top: 20px;
+        }
+
+        .TargetResult #semester-info {
+            font-size: 16px;
+            color: #333;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <button class="return-button" onclick="window.location.href='/'">Return</button>
-
+    
     <h1>Result Page</h1>
     <div class="container">
         
@@ -323,8 +380,17 @@
             {% endfor %}
         </div>
         
-
         <p>If you think the the result seems inaccurate, feel free to <a href="https://www.linkedin.com/in/ratnajit-dhar" target="_blank">reach out to me</a></p>
+        <div class="TargetResult">
+            <label for="target-cgpa">Target CGPA:</label>
+            <input type="number" id="target-cgpa" step="0.01" min="0" max="4" placeholder="Enter target CGPA">
+            <label for="howSemester"><strong>How many semesters left?</strong></label>
+            <input type="number" id="howSemester" step="1" min="0" max="10" placeholder="Enter semesters left">
+            <button id="calculate-button" type="button">Calculate</button>
+            <div id="needed-cgpa-result"></div>
+            <div id="semester-info"></div> <!-- New div to display semesterGone and howSemester -->
+        </div>
+        
         <div class="filter-container">
             <label for="level">Level:</label>
             <select id="level" name="level">
@@ -397,6 +463,65 @@
             });
         });
         </script>
+        <script>
+        document.getElementById('calculate-button').addEventListener('click', function () {
+            const targetCgpa = parseFloat(document.getElementById('target-cgpa').value);
+            const currentCgpa = parseFloat('{{ cgpa }}'); // Assuming current CGPA is available in the template context
+            const remainingSemester = parseFloat(document.getElementById('howSemester').value);
+            const semesterGone = displayedSemesters;
+
+            if (isNaN(targetCgpa) || targetCgpa < 0 || targetCgpa > 4) {
+                document.getElementById('needed-cgpa-result').innerText = 'Please enter a valid target CGPA between 0 and 4.';
+                return;
+            }
+
+            if (isNaN(remainingSemester) || remainingSemester <= 0) {
+                document.getElementById('needed-cgpa-result').innerText = 'Please enter a valid number of semesters left.';
+                return;
+            }
+
+            if (targetCgpa <= currentCgpa) {
+                document.getElementById('needed-cgpa-result').innerText = 'Your target CGPA is already achieved or lower than the current CGPA.';
+                return;
+            }
+
+            const totalSemester = remainingSemester + semesterGone;
+            const neededCgpa = (((totalSemester * targetCgpa) - (semesterGone * currentCgpa)) / remainingSemester).toFixed(2);
+            document.getElementById('needed-cgpa-result').innerText = `You need to achieve an average CGPA of ${neededCgpa} per semester to reach your target.`;
+
+        });
+        </script>
+        <script>
+            let displayedSemesters = 0; // Variable to store the count
+        
+            function countDisplayedSemesters() {
+                const boxes = document.querySelectorAll('.box');
+                let count = 0;
+        
+                boxes.forEach(box => {
+                    if (box.offsetParent !== null) {  // Check if the box is visible
+                        count++;
+                    }
+                });
+        
+                displayedSemesters = count; // Store the value in the variable
+                console.log("Displayed Semesters:", displayedSemesters); // For debugging (optional)
+            }
+        
+            // Call the function initially
+            countDisplayedSemesters();
+        
+            // Update count when filtering
+            document.getElementById('filter-button').addEventListener('click', function () {
+                setTimeout(countDisplayedSemesters, 100);
+            });
+        
+            document.getElementById('reset-button').addEventListener('click', function () {
+                setTimeout(countDisplayedSemesters, 100);
+            });
+        </script>
+        
+        
     </div>
 </body>
 </html>
