@@ -24,12 +24,12 @@
             width: 80%;
             max-width: 600px;
             height: 150px;
-            border: 2px solid #007bff;
+            border: 2px solid #000000;
             border-radius: 10px;
             background-color: #fff;
             font-size: 24px;
             font-weight: bold;
-            color: #007bff;
+            color: #000000;
             display: flex;
             flex-direction: column;
             justify-content: flex-start; 
@@ -41,13 +41,13 @@
         .cgpa-label {
             font-size: 20px;
             font-weight: bold;
-            color: #007bff;
+            color: #000000;
             margin-bottom: 10px; 
         }
         .cgpa-value {
             font-size: 64px;
             font-weight: bold;
-            color: #007bff;
+            color: #000000;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -71,20 +71,20 @@
         .box {
             width: 120px;
             height: 120px;
-            border: 1px solid #ccc;
+            border: 1px solid #000000;
             border-radius: 10px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start; 
             align-items: center;
             font-size: 14px;
-            background-color: #e6f7ff;
+            background-color: #fff;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 10px;
         }
         .box:hover {
-            background-color: #d1f0ff;
-            border-color: #007bff;
+            background-color: #e9ecef;
+            border-color: #000000;
             transform: scale(1.05);
             transition: 0.3s ease-in-out;
         }
@@ -97,7 +97,7 @@
         .gpa-value {
             font-size: 48px;  
             font-weight: bold;
-            color: #007bff;
+            color: #000000;
             text-align: center;
             display: flex;
             justify-content: center;
@@ -121,7 +121,7 @@
         .filter-container button {
             font-size: 16px;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #000000;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -164,7 +164,7 @@
             padding: 8px;
         }
         table.dataframe th {
-            background-color: #007bff;
+            background-color: #000000;
             color: white;
         }
        
@@ -264,7 +264,7 @@
         .TargetResult {
             width: 80%;
             max-width: 600px;
-            border: 2px solid #007bff;
+            border: 2px solid #000000;
             border-radius: 10px;
             background-color: #fff;
             padding: 20px;
@@ -276,7 +276,7 @@
         .TargetResult label {
             font-size: 16px;
             font-weight: bold;
-            color: #007bff;
+            color: #000000;
             display: block;
             margin-bottom: 10px;
         }
@@ -293,7 +293,7 @@
         .TargetResult button {
             font-size: 16px;
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #000000;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -309,7 +309,7 @@
         .TargetResult #needed-cgpa-result {
             font-size: 18px;
             font-weight: bold;
-            color: #007bff;
+            color: #000000;
             margin-top: 20px;
         }
 
@@ -318,6 +318,63 @@
             color: #333;
             margin-top: 10px;
         }
+        @media (max-width: 768px) {
+        .TargetResult {
+            width: 90%;
+            padding: 15px;
+        }
+
+        .TargetResult label {
+            font-size: 14px;
+        }
+
+        .TargetResult input {
+            font-size: 14px;
+            padding: 8px;
+        }
+
+        .TargetResult button {
+            font-size: 14px;
+            padding: 8px 16px;
+        }
+
+        .TargetResult #needed-cgpa-result {
+            font-size: 16px;
+        }
+
+        .TargetResult #semester-info {
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .TargetResult {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .TargetResult label {
+            font-size: 12px;
+        }
+
+        .TargetResult input {
+            font-size: 12px;
+            padding: 6px;
+        }
+
+        .TargetResult button {
+            font-size: 12px;
+            padding: 6px 12px;
+        }
+
+        .TargetResult #needed-cgpa-result {
+            font-size: 14px;
+        }
+
+        .TargetResult #semester-info {
+            font-size: 12px;
+        }
+    }
     </style>
 </head>
 <body>

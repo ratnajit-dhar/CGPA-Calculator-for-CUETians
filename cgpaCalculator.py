@@ -73,10 +73,11 @@ def calculate_cgpa(data):
                 cgpagradeSum += row['Course Credit'] * row['Result']
                 cgpacred += row['Course Credit']
             gpa = round(gradeSum / cred, 2)
+            gpa = f"{gpa:.2f}"
             resultDataframe.loc[len(resultDataframe)] = [i, j, cred, gpa]
 
     cgpa = round(cgpagradeSum / cgpacred, 2)
-
+    cgpa = f"{cgpa:.2f}"
     
     df['Level'] = df['LevelNo']
     df['Term'] = df['TermNo']
