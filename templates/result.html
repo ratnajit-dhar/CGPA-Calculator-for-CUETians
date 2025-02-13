@@ -445,7 +445,7 @@
             <input type="number" id="howSemester" step="1" min="0" max="10" placeholder="Enter semesters left">
             <button id="calculate-button" type="button">Calculate</button>
             <div id="needed-cgpa-result"></div>
-            <div id="semester-info"></div> <!-- New div to display semesterGone and howSemester -->
+            <div id="semester-info"></div>
         </div>
         
         <div class="filter-container">
@@ -523,7 +523,7 @@
         <script>
         document.getElementById('calculate-button').addEventListener('click', function () {
             const targetCgpa = parseFloat(document.getElementById('target-cgpa').value);
-            const currentCgpa = parseFloat('{{ cgpa }}'); // Assuming current CGPA is available in the template context
+            const currentCgpa = parseFloat('{{ cgpa }}'); 
             const remainingSemester = parseFloat(document.getElementById('howSemester').value);
             const semesterGone = displayedSemesters;
 
@@ -549,26 +549,26 @@
         });
         </script>
         <script>
-            let displayedSemesters = 0; // Variable to store the count
+            let displayedSemesters = 0;
         
             function countDisplayedSemesters() {
                 const boxes = document.querySelectorAll('.box');
                 let count = 0;
         
                 boxes.forEach(box => {
-                    if (box.offsetParent !== null) {  // Check if the box is visible
+                    if (box.offsetParent !== null) {  
                         count++;
                     }
                 });
         
-                displayedSemesters = count; // Store the value in the variable
-                console.log("Displayed Semesters:", displayedSemesters); // For debugging (optional)
+                displayedSemesters = count;
+                console.log("Displayed Semesters:", displayedSemesters); 
             }
         
-            // Call the function initially
+           
             countDisplayedSemesters();
         
-            // Update count when filtering
+            
             document.getElementById('filter-button').addEventListener('click', function () {
                 setTimeout(countDisplayedSemesters, 100);
             });
