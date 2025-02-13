@@ -537,10 +537,10 @@
                 return;
             }
 
-            if (targetCgpa <= currentCgpa) {
-                document.getElementById('needed-cgpa-result').innerText = 'Your target CGPA is already achieved or lower than the current CGPA.';
-                return;
-            }
+            // if (targetCgpa <= currentCgpa) {
+            //     document.getElementById('needed-cgpa-result').innerText = 'Your target CGPA is already achieved or lower than the current CGPA.';
+            //     return;
+            // }
 
             const totalSemester = remainingSemester + semesterGone;
             const neededCgpa = (((totalSemester * targetCgpa) - (semesterGone * currentCgpa)) / remainingSemester).toFixed(2);
