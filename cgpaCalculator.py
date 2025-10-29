@@ -57,7 +57,8 @@ def calculate_cgpa(data):
     }
     df['Grade'] = df['Result']
     df['Result'] = df['Result'].map(map_result)
-    df['TermNo'] = df['TermNo'].map(map_term)
+    df['TermNo'] = df['TermNo'].astype(str).map(map_term).fillna(df['TermNo']).astype(int)
+
     resultDataframe = pd.DataFrame(columns=["Level", "Term", "TotalCredit", "GPA"])
     cgpagradeSum = 0
     cgpacred = 0
